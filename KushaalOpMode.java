@@ -221,14 +221,14 @@ public class KushaalOpMode extends LinearOpMode {
             telemetry.update();
         }
 // This part of the code is trying to reduce the set speed by half.
-        if(gamepad1.Dpad_right == 1 ){
+        if(gamepad1.Dpad_right){
             leftFrontDrive.setPower(0.5);
             rightFrontDrive.setPower(0.5);
             leftBackDrive.setPower(0.5);
             rightBackDrive.setPower(0.5);
         }
 // This part of this code is to increase the speed of the motor a little.
-        if(gamepad1.Dpad_left == 1 ){
+        if(gamepad1.Dpad_left){
             leftFrontDrive.setPower(0.7);
             rightFrontDrive.setPower(0.7);
             leftBackDrive.setPower(0.7);
@@ -236,7 +236,7 @@ public class KushaalOpMode extends LinearOpMode {
         }
         
 // This part of the code is to reset the motors to max speed.          
-        if(gamepad1.Dpad_up == 1 ){
+        if(gamepad1.Dpad_up){
             leftFrontDrive.setPower(1.0);
             rightFrontDrive.setPower(1.0);
             leftBackDrive.setPower(1.0);
