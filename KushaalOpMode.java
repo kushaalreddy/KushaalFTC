@@ -243,6 +243,6 @@ public class KushaalOpMode extends LinearOpMode {
             rightBackDrive.setPower(1.0);
         }
 
-       System.println(leftFrontDrive);
+       
     }
 }
