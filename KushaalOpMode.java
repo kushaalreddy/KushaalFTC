@@ -75,6 +75,7 @@ public class KushaalOpMode extends LinearOpMode {
     private DcMotor rightFrontDrive = null;
     private DcMotor rightBackDrive = null;
     private Servo dronelaunch = null;
+    private double mulPower = 1.0;
 
     Arm arm = new Arm(this);
     Claw claw       = new Claw(this);
@@ -176,10 +177,26 @@ public class KushaalOpMode extends LinearOpMode {
                 rightFrontPower /= max;
                 leftBackPower /= max;
                 rightBackPower /= max;
+
             }
 
+        if(gamepad1.Dpad_right){
+            mulPower+=0.1;
+        }
+// This part of this code is to increase the speed of the motor a little.
+        if(gamepad1.Dpad_left){
+            mulPower-=0.1;
+        }
 
+        if (mulPower > 1) {
+            mulPower = 1;
+        }
 
+         if (mulPower < 0.1) {
+            mulPower = 0.1;
+        }
+
+            
             // This is test code:
             //
             // Uncomment the following code to test your motor directions.
@@ -199,10 +216,10 @@ public class KushaalOpMode extends LinearOpMode {
 
             // Send calculated power to wheels
             if (!gamepad1.y) {
-                leftFrontDrive.setPower(leftFrontPower);
-                rightFrontDrive.setPower(rightFrontPower);
-                leftBackDrive.setPower(leftBackPower);
-                rightBackDrive.setPower(rightBackPower);
+                leftFrontDrive.setPower(leftFrontPower * mulPower);
+                rightFrontDrive.setPower(rightFrontPower * mulPower);
+                leftBackDrive.setPower(leftBackPower * mulPower );
+                rightBackDrive.setPower(rightBackPower * mulPower);
 
             } else {
                 // braking here by setPower to zero;
@@ -229,13 +246,12 @@ public class KushaalOpMode extends LinearOpMode {
             mulPower-=0.1;
         }
 
-        
-// This part of the code is to reset the motors to max speed.          
-        if(gamepad1.Dpad_up){
-            leftFrontDrive.setPower(1.0);
-            rightFrontDrive.setPower(1.0);
-            leftBackDrive.setPower(1.0);
-            rightBackDrive.setPower(1.0);
+        if (mulPower > 1) {
+            mulPower = 1;
+        }
+
+         if (mulPower < 0.1) {
+            mulPower = 0.1;
         }
 
        
